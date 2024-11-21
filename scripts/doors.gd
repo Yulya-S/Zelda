@@ -45,19 +45,33 @@ func set_coord(room_coord: Vector2i):
 
 func _on_to_left_door_body_entered(body: Node2D) -> void:
 	if doors[0] and body.name == "Player":
-		Signals.emit_signal("teleport", exit_coords[0])
+		hide_room()
+		Signals.emit_signal("teleport", exit_coords[0],
+							Vector2i($"..".room_address.x - 1, $"..".room_address.y))
 
 
 func _on_to_right_door_body_entered(body: Node2D) -> void:
 	if doors[1] and body.name == "Player":
-		Signals.emit_signal("teleport", exit_coords[1])
+		hide_room()
+		Signals.emit_signal("teleport", exit_coords[1],
+							Vector2i($"..".room_address.x + 1, $"..".room_address.y))
 
 
 func _on_to_top_door_body_entered(body: Node2D) -> void:
 	if doors[2] and body.name == "Player":
-		Signals.emit_signal("teleport", exit_coords[2])
+		hide_room()
+		Signals.emit_signal("teleport", exit_coords[2],
+							Vector2i($"..".room_address.x, $"..".room_address.y - 1))
 
 
 func _on_to_bottom_door_body_entered(body: Node2D) -> void:
 	if doors[3] and body.name == "Player":
-		Signals.emit_signal("teleport", exit_coords[3])
+		hide_room()
+		Signals.emit_signal("teleport", exit_coords[3],
+							Vector2i($"..".room_address.x, $"..".room_address.y + 1))
+
+
+func hide_room():
+	var room = $".."
+	for i in room.get_children():
+		i.hide()

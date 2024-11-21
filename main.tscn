@@ -1,69 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://4vxo4kox7rxk"]
+[gd_scene load_steps=3 format=3 uid="uid://4vxo4kox7rxk"]
 
-[ext_resource type="Script" path="res://scripts/rooms.gd" id="1_crdqr"]
-[ext_resource type="Script" path="res://scripts/main.gd" id="4_p2mt0"]
-[ext_resource type="Script" path="res://fps.gd" id="5_2s253"]
-[ext_resource type="Texture2D" uid="uid://bys54dffke7an" path="res://img/hitbox_under.tres" id="5_srjgg"]
-[ext_resource type="Texture2D" uid="uid://etj6ojicauw6" path="res://img/hitbox_progress.tres" id="6_mvs1c"]
-[ext_resource type="PackedScene" uid="uid://qqbwv42xluvd" path="res://vase.tscn" id="6_ou1bu"]
-[ext_resource type="PackedScene" uid="uid://cex8fxk6ikeo0" path="res://player.tscn" id="7_83ahn"]
-[ext_resource type="PackedScene" uid="uid://bg57qu3vmq5t1" path="res://chest.tscn" id="8_43geq"]
+[ext_resource type="PackedScene" uid="uid://ducjvo0udede" path="res://menu.tscn" id="1_afglf"]
+[ext_resource type="Script" path="res://main.gd" id="1_rsve4"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Main" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_rsve4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -70511.0
-offset_top = -23645.0
-offset_right = 78331.0
-offset_bottom = 41566.0
-color = Color(0.0392157, 0.0352941, 0.0352941, 1)
-
-[node name="rooms" type="Node2D" parent="."]
-script = ExtResource("1_crdqr")
-
-[node name="Back" type="Node2D" parent="."]
-script = ExtResource("4_p2mt0")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
-offset_left = 14.0
-offset_top = 13.0
-offset_right = 176.0
-offset_bottom = 53.0
-max_value = 6.0
-value = 6.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_srjgg")
-texture_progress = ExtResource("6_mvs1c")
-tint_progress = Color(0.981839, 0, 0.236992, 1)
-
-[node name="fps" type="Label" parent="CanvasLayer"]
-offset_left = 822.0
-offset_top = 12.0
-offset_right = 1145.0
-offset_bottom = 48.0
-horizontal_alignment = 2
-script = ExtResource("5_2s253")
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_top = 613.0
-offset_right = 1152.0
-offset_bottom = 636.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Vase" parent="." instance=ExtResource("6_ou1bu")]
-position = Vector2(256, 415)
-
-[node name="Player" parent="." instance=ExtResource("7_83ahn")]
-position = Vector2(447, 276)
-
-[node name="Chest" parent="." instance=ExtResource("8_43geq")]
-position = Vector2(629, 291)
-
-[node name="Vase2" parent="." instance=ExtResource("6_ou1bu")]
-position = Vector2(180, 272)
-
-[node name="Vase3" parent="." instance=ExtResource("6_ou1bu")]
-position = Vector2(258, 179)
+[node name="menu" parent="." instance=ExtResource("1_afglf")]

@@ -37,6 +37,7 @@ func _ready() -> void:
 			room = room_array[randi_range(0,room_array.size()-1)].instantiate()
 
 		room.set_pos(x, y)
+		room.hide_room()
 		coords[[x, y]] = room
 		add_child(room)
 	

@@ -98,7 +98,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4wdtj")
 }],
-"loop": false,
+"loop": true,
 "name": &"1",
 "speed": 5.0
 }, {
@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkss1")
 }],
-"loop": false,
+"loop": true,
 "name": &"2",
 "speed": 5.0
 }, {
@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ksbig")
 }],
-"loop": false,
+"loop": true,
 "name": &"3",
 "speed": 5.0
 }, {
@@ -149,7 +149,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ui2xj")
 }],
-"loop": false,
+"loop": true,
 "name": &"4",
 "speed": 5.0
 }, {
@@ -166,7 +166,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_e3quq")
 }],
-"loop": false,
+"loop": true,
 "name": &"5",
 "speed": 5.0
 }]
@@ -185,7 +185,7 @@ script = ExtResource("1_4bd3e")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uq1up")
-animation = &"1"
+animation = &"5"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -201,5 +201,5 @@ collision_mask = 4
 position = Vector2(0, 37)
 shape = SubResource("CircleShape2D_feb60")
 
-[connection signal="area_entered" from="hitBoxArea" to="." method="_on_hit_box_area_area_entered"]
+[connection signal="area_entered" from="hitBoxArea" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="hitBoxArea" to="." method="_on_hit_box_area_area_exited"]

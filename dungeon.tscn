@@ -1,0 +1,113 @@
+[gd_scene load_steps=12 format=3 uid="uid://bm4n5xvsdo7fn"]
+
+[ext_resource type="Script" path="res://scripts/rooms.gd" id="1_4b808"]
+[ext_resource type="Script" path="res://dungeon.gd" id="1_j00h5"]
+[ext_resource type="Texture2D" uid="uid://bys54dffke7an" path="res://img/hitbox_under.tres" id="5_53xve"]
+[ext_resource type="Texture2D" uid="uid://etj6ojicauw6" path="res://img/hitbox_progress.tres" id="6_ui03b"]
+[ext_resource type="Script" path="res://fps.gd" id="7_heu18"]
+[ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="7_uty32"]
+[ext_resource type="Script" path="res://texture_progress_bar.gd" id="8_5u1vv"]
+[ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="8_vi16c"]
+[ext_resource type="PackedScene" uid="uid://cex8fxk6ikeo0" path="res://player.tscn" id="8_wmdfo"]
+[ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="9_usn3a"]
+[ext_resource type="PackedScene" uid="uid://d2j844cfaimlw" path="res://img/prize.tscn" id="10_a1lxr"]
+
+[node name="dungeon" type="Node2D"]
+script = ExtResource("1_j00h5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -70658.0
+offset_top = -23666.0
+offset_right = 78184.0
+offset_bottom = 41545.0
+color = Color(0.0392157, 0.0352941, 0.0352941, 1)
+
+[node name="rooms" type="Node2D" parent="."]
+script = ExtResource("1_4b808")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 176.0
+offset_bottom = 53.0
+max_value = 6.0
+value = 6.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_53xve")
+texture_progress = ExtResource("6_ui03b")
+tint_progress = Color(0.981839, 0, 0.236992, 1)
+script = ExtResource("8_5u1vv")
+
+[node name="fps" type="Label" parent="CanvasLayer"]
+offset_left = 822.0
+offset_top = 12.0
+offset_right = 1145.0
+offset_bottom = 48.0
+horizontal_alignment = 2
+script = ExtResource("7_heu18")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 613.0
+offset_right = 1152.0
+offset_bottom = 636.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthPotion" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(37.5, 593.5)
+scale = Vector2(4.6875, 4.6875)
+texture = ExtResource("7_uty32")
+
+[node name="potions_count" type="Label" parent="CanvasLayer"]
+offset_left = 27.5
+offset_top = 622.0
+offset_right = 46.5
+offset_bottom = 645.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(94, 595.5)
+scale = Vector2(5.3125, 5.3125)
+texture = ExtResource("8_vi16c")
+
+[node name="coins_count" type="Label" parent="CanvasLayer"]
+offset_left = 87.5
+offset_top = 623.0
+offset_right = 106.5
+offset_bottom = 646.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Arrows" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(160.5, 597.5)
+scale = Vector2(3.6875, 3.6875)
+texture = ExtResource("9_usn3a")
+
+[node name="arrows_count" type="Label" parent="CanvasLayer"]
+offset_left = 150.5
+offset_top = 623.0
+offset_right = 169.5
+offset_bottom = 646.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" parent="." instance=ExtResource("8_wmdfo")]
+position = Vector2(447, 276)
+
+[node name="prize" parent="." instance=ExtResource("10_a1lxr")]
+position = Vector2(169, 303)
+
+[node name="prize2" parent="." instance=ExtResource("10_a1lxr")]
+position = Vector2(268, 384)
+
+[node name="prize3" parent="." instance=ExtResource("10_a1lxr")]
+position = Vector2(245, 225)
+
+[node name="prize4" parent="." instance=ExtResource("10_a1lxr")]
+position = Vector2(609, 388)

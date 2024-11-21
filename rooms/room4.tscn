@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://5trqvtc77o5l"]
+[gd_scene load_steps=12 format=4 uid="uid://5trqvtc77o5l"]
 
 [ext_resource type="Script" path="res://scripts/ordinary_room.gd" id="1_w0fjm"]
 [ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="2_v4qtn"]
+[ext_resource type="Script" path="res://rooms/enemys.gd" id="2_ys6ii"]
 [ext_resource type="PackedScene" uid="uid://vkemfn0mkuhs" path="res://doors.tscn" id="3_dvw1q"]
+[ext_resource type="PackedScene" uid="uid://bg57qu3vmq5t1" path="res://chest.tscn" id="5_c2i8k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jdj4"]
 texture = ExtResource("2_v4qtn")
@@ -6798,3 +6800,9 @@ tile_map_data = PackedByteArray("AAABAAAAAAACAAsAAAACAAAAAAABAAsAAAADAAAAAAACAAs
 tile_set = SubResource("TileSet_7n47k")
 
 [node name="Doors" parent="." instance=ExtResource("3_dvw1q")]
+
+[node name="Enemys" type="Node2D" parent="."]
+script = ExtResource("2_ys6ii")
+
+[node name="Chest" parent="." instance=ExtResource("5_c2i8k")]
+position = Vector2(416, 315)
