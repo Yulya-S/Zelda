@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://vjg60q8xfne3"]
+
+[ext_resource type="Texture2D" uid="uid://xy8hmlwv2t7y" path="res://img/Bones_SingleSkull_Fly.png" id="1_m1qcv"]
+
+[resource]
+atlas = ExtResource("1_m1qcv")
+region = Rect2(0, 0, 64, 64)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://ihpvjduy3w8o"]
+
+[ext_resource type="Script" path="res://scripts/message.gd" id="1_d7r03"]
+
+[sub_resource type="Animation" id="Animation_mafua"]
+resource_name = "hide_text"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_obqh1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jh6p4"]
+_data = {
+"RESET": SubResource("Animation_obqh1"),
+"hide_text": SubResource("Animation_mafua")
+}
+
+[node name="Message" type="Node2D"]
+script = ExtResource("1_d7r03")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Текстовое сообщение"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Label")
+libraries = {
+"": SubResource("AnimationLibrary_jh6p4")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

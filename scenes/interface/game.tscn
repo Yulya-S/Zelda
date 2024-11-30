@@ -1,0 +1,215 @@
+[gd_scene load_steps=15 format=3 uid="uid://b35gv3r4v2qn8"]
+
+[ext_resource type="Script" path="res://scenes/interface/game.gd" id="1_47o4v"]
+[ext_resource type="Script" path="res://scenes/interface/Rooms.gd" id="2_1sbx0"]
+[ext_resource type="PackedScene" uid="uid://bv2blouee7k1l" path="res://scenes/interface/pause.tscn" id="2_nsld0"]
+[ext_resource type="PackedScene" uid="uid://bvxwj2am5482f" path="res://scenes/interface/loading_game.tscn" id="3_64oxe"]
+[ext_resource type="PackedScene" uid="uid://cex8fxk6ikeo0" path="res://scenes/persons/player.tscn" id="3_lt38s"]
+[ext_resource type="Texture2D" uid="uid://bys54dffke7an" path="res://img/hitbox_under.tres" id="4_f8vht"]
+[ext_resource type="Texture2D" uid="uid://etj6ojicauw6" path="res://img/hitbox_progress.tres" id="5_4abgl"]
+[ext_resource type="PackedScene" uid="uid://c0acxvuubc7u" path="res://scenes/map/map.tscn" id="5_a2n7m"]
+[ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="9_7127x"]
+[ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="10_ea0a5"]
+[ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="11_abgms"]
+
+[sub_resource type="Animation" id="Animation_joiut"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/death_text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasLayer/map:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_744rq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/death_text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasLayer/map:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ae7ro"]
+_data = {
+"RESET": SubResource("Animation_744rq"),
+"death": SubResource("Animation_joiut")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_47o4v")
+
+[node name="Rooms" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("2_1sbx0")
+
+[node name="Player" parent="." node_paths=PackedStringArray("interface_scene") instance=ExtResource("3_lt38s")]
+process_mode = 1
+interface_scene = NodePath("../CanvasLayer/Interface")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Node2D" parent="CanvasLayer"]
+
+[node name="healthBar" type="TextureProgressBar" parent="CanvasLayer/Interface"]
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 176.0
+offset_bottom = 53.0
+max_value = 6.0
+value = 6.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_f8vht")
+texture_progress = ExtResource("5_4abgl")
+tint_progress = Color(0.981839, 0, 0.236992, 1)
+
+[node name="messenger" type="Node2D" parent="CanvasLayer/Interface"]
+position = Vector2(25, 72)
+
+[node name="fps" type="Label" parent="CanvasLayer/Interface"]
+offset_left = 814.0
+offset_top = 19.0
+offset_right = 1137.0
+offset_bottom = 55.0
+horizontal_alignment = 2
+
+[node name="interaction_text" type="Label" parent="CanvasLayer/Interface"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 560.0
+offset_right = 1152.0
+offset_bottom = 632.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="potions_count" type="Label" parent="CanvasLayer/Interface"]
+offset_left = 25.0
+offset_top = 610.0
+offset_right = 44.0
+offset_bottom = 633.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthPotion" type="Sprite2D" parent="CanvasLayer/Interface/potions_count"]
+position = Vector2(10, -28.5)
+scale = Vector2(4.6875, 4.6875)
+texture = ExtResource("9_7127x")
+
+[node name="coins_count" type="Label" parent="CanvasLayer/Interface"]
+offset_left = 85.0
+offset_top = 611.0
+offset_right = 104.0
+offset_bottom = 634.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Sprite2D" parent="CanvasLayer/Interface/coins_count"]
+position = Vector2(6.5, -27.5)
+scale = Vector2(5.3125, 5.3125)
+texture = ExtResource("10_ea0a5")
+
+[node name="arrows_count" type="Label" parent="CanvasLayer/Interface"]
+offset_left = 148.0
+offset_top = 611.0
+offset_right = 167.0
+offset_bottom = 634.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Arrows" type="Sprite2D" parent="CanvasLayer/Interface/arrows_count"]
+position = Vector2(10, -25.5)
+scale = Vector2(3.6875, 3.6875)
+texture = ExtResource("11_abgms")
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("2_nsld0")]
+
+[node name="map" parent="CanvasLayer" instance=ExtResource("5_a2n7m")]
+
+[node name="LoadingGame" parent="CanvasLayer" instance=ExtResource("3_64oxe")]
+
+[node name="death_text" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_font_sizes/font_size = 90
+text = "Провал"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+root_node = NodePath("../Player")
+libraries = {
+"": SubResource("AnimationLibrary_ae7ro")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

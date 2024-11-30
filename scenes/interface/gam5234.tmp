@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://b35gv3r4v2qn8"]
+
+[ext_resource type="Script" path="res://scenes/interface/game.gd" id="1_47o4v"]
+[ext_resource type="Script" path="res://scenes/interface/Rooms.gd" id="2_1sbx0"]
+[ext_resource type="PackedScene" uid="uid://bv2blouee7k1l" path="res://scenes/interface/pause.tscn" id="2_nsld0"]
+[ext_resource type="PackedScene" uid="uid://bvxwj2am5482f" path="res://scenes/interface/loading_game.tscn" id="3_64oxe"]
+[ext_resource type="PackedScene" uid="uid://cex8fxk6ikeo0" path="res://scenes/persons/player.tscn" id="3_lt38s"]
+[ext_resource type="PackedScene" uid="uid://c0acxvuubc7u" path="res://scenes/map/map.tscn" id="5_a2n7m"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_47o4v")
+
+[node name="Rooms" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("2_1sbx0")
+
+[node name="Player" parent="." instance=ExtResource("3_lt38s")]
+process_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("2_nsld0")]
+
+[node name="map" parent="CanvasLayer" instance=ExtResource("5_a2n7m")]
+
+[node name="LoadingGame" parent="CanvasLayer" instance=ExtResource("3_64oxe")]

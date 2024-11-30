@@ -1,0 +1,114 @@
+[gd_scene load_steps=11 format=3 uid="uid://bm4n5xvsdo7fn"]
+
+[ext_resource type="Script" path="res://scripts/dungeon.gd" id="1_l8cq7"]
+[ext_resource type="Script" path="res://scripts/rooms.gd" id="2_hiyko"]
+[ext_resource type="Texture2D" uid="uid://bys54dffke7an" path="res://img/hitbox_under.tres" id="3_03hdr"]
+[ext_resource type="Texture2D" uid="uid://etj6ojicauw6" path="res://img/hitbox_progress.tres" id="4_kwclp"]
+[ext_resource type="Script" path="res://scripts/texture_progress_bar.gd" id="5_w6s84"]
+[ext_resource type="Script" path="res://scripts/messenger.gd" id="6_7tl4h"]
+[ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="7_rie7i"]
+[ext_resource type="Script" path="res://scripts/fps.gd" id="7_thomi"]
+[ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="8_cod2f"]
+[ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="9_73ns5"]
+
+[node name="dungeon" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_l8cq7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -70658.0
+offset_top = -23666.0
+offset_right = 78184.0
+offset_bottom = 41545.0
+color = Color(0.0392157, 0.0352941, 0.0352941, 1)
+
+[node name="rooms" type="Node2D" parent="."]
+script = ExtResource("2_hiyko")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="load" type="TextureProgressBar" parent="CanvasLayer2"]
+offset_top = 421.0
+offset_right = 1145.0
+offset_bottom = 461.0
+max_value = 6.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_03hdr")
+texture_progress = ExtResource("4_kwclp")
+tint_progress = Color(0.981839, 0, 0.236992, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 176.0
+offset_bottom = 53.0
+max_value = 6.0
+value = 6.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_03hdr")
+texture_progress = ExtResource("4_kwclp")
+tint_progress = Color(0.981839, 0, 0.236992, 1)
+script = ExtResource("5_w6s84")
+
+[node name="messenger" type="Node2D" parent="CanvasLayer"]
+position = Vector2(11, 59)
+script = ExtResource("6_7tl4h")
+
+[node name="fps" type="Label" parent="CanvasLayer"]
+offset_left = 822.0
+offset_top = 12.0
+offset_right = 1145.0
+offset_bottom = 48.0
+horizontal_alignment = 2
+script = ExtResource("7_thomi")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 613.0
+offset_right = 1152.0
+offset_bottom = 636.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="potions_count" type="Label" parent="CanvasLayer"]
+offset_left = 27.5
+offset_top = 622.0
+offset_right = 46.5
+offset_bottom = 645.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthPotion" type="Sprite2D" parent="CanvasLayer/potions_count"]
+position = Vector2(10, -28.5)
+scale = Vector2(4.6875, 4.6875)
+texture = ExtResource("7_rie7i")
+
+[node name="coins_count" type="Label" parent="CanvasLayer"]
+offset_left = 87.5
+offset_top = 623.0
+offset_right = 106.5
+offset_bottom = 646.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Sprite2D" parent="CanvasLayer/coins_count"]
+position = Vector2(6.5, -27.5)
+scale = Vector2(5.3125, 5.3125)
+texture = ExtResource("8_cod2f")
+
+[node name="arrows_count" type="Label" parent="CanvasLayer"]
+offset_left = 150.5
+offset_top = 623.0
+offset_right = 169.5
+offset_bottom = 646.0
+text = "99"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Arrows" type="Sprite2D" parent="CanvasLayer/arrows_count"]
+position = Vector2(10, -25.5)
+scale = Vector2(3.6875, 3.6875)
+texture = ExtResource("9_73ns5")
