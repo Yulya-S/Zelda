@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://di52hw204qav5"]
 
-[ext_resource type="Script" path="res://scripts/product.gd" id="1_v5f57"]
+[ext_resource type="Script" path="res://scripts/dungeon/product.gd" id="1_v5f57"]
 [ext_resource type="Texture2D" uid="uid://emejmg3htqd8" path="res://img/bubble_5.png" id="2_eefmw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_82hal"]
@@ -9,7 +9,7 @@ radius = 46.0977
 [sub_resource type="CircleShape2D" id="CircleShape2D_5wuco"]
 radius = 39.0128
 
-[node name="Product" type="StaticBody2D"]
+[node name="product" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_v5f57")
@@ -39,4 +39,3 @@ position = Vector2(0, 24)
 shape = SubResource("CircleShape2D_5wuco")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ihpvjduy3w8o"]
 
-[ext_resource type="Script" path="res://scripts/message.gd" id="1_d7r03"]
+[ext_resource type="Script" path="res://scripts/interface/message.gd" id="1_d7r03"]
 
 [sub_resource type="Animation" id="Animation_mafua"]
 resource_name = "hide_text"

@@ -1,14 +1,6 @@
 extends Control
 
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta: float) -> void:
-	pass
-
-
 # продолжить игру
 func _on_return_button_down() -> void:
 	$"../..".state = $"../..".states.PLAING

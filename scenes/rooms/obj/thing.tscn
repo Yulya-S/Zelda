@@ -1,6 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://d2j844cfaimlw"]
+[gd_scene load_steps=37 format=3 uid="uid://d2j844cfaimlw"]
 
-[ext_resource type="Script" path="res://scripts/thing.gd" id="1_4uib8"]
+[ext_resource type="Script" path="res://scripts/dungeon/thing.gd" id="1_4uib8"]
 [ext_resource type="Texture2D" uid="uid://b1h2jurggo16s" path="res://img/BlueGem.png" id="2_ks40g"]
 [ext_resource type="Texture2D" uid="uid://c7splu8kidj8v" path="res://img/PileOfCoins.png" id="3_cfw0s"]
 [ext_resource type="Texture2D" uid="uid://chgh8i826trka" path="res://img/SmallHealthPotion.png" id="4_lsh27"]
@@ -215,15 +215,72 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf2xv"]
 radius = 15.5611
 
+[sub_resource type="Animation" id="Animation_7bsbp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5.25, 6.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u0o31"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333, 1),
+"transitions": PackedFloat32Array(0.812253, 3.73213, 1),
+"update": 0,
+"values": [Vector2(5.25, 6.25), Vector2(5.25, -23), Vector2(5.25, 6.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_af7lm"]
+_data = {
+"RESET": SubResource("Animation_7bsbp"),
+"spawn": SubResource("Animation_u0o31")
+}
+
 [node name="thing" type="Node2D"]
 position = Vector2(-5, -5)
 script = ExtResource("1_4uib8")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(5.25, 6.25)
 scale = Vector2(2.59375, 2.59375)
 sprite_frames = SubResource("SpriteFrames_u0mca")
@@ -239,4 +296,14 @@ collision_mask = 4
 position = Vector2(2.06452, 2.58065)
 shape = SubResource("CircleShape2D_qf2xv")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_af7lm")
+}
+
 [connection signal="area_entered" from="interact_zone" to="." method="_on_interact_zone_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

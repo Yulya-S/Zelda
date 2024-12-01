@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0acxvuubc7u"]
+[gd_scene load_steps=9 format=3 uid="uid://c0acxvuubc7u"]
 
-[ext_resource type="Script" path="res://scenes/map/map.gd" id="1_8i02i"]
+[ext_resource type="Script" path="res://scripts/interface/map.gd" id="1_8i02i"]
 [ext_resource type="Texture2D" uid="uid://c2frjrn4nyslq" path="res://img/$ limp.png" id="2_xwwot"]
-[ext_resource type="Script" path="res://scripts/enemy_count.gd" id="3_arafj"]
-[ext_resource type="Script" path="res://scenes/map/statistics.gd" id="3_fbu1a"]
+[ext_resource type="Texture2D" uid="uid://vjg60q8xfne3" path="res://img/bone.tres" id="3_mvltj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqqbg"]
 atlas = ExtResource("2_xwwot")
@@ -52,7 +51,7 @@ offset_right = 1338.0
 offset_bottom = 764.0
 color = Color(0.0392157, 0.0352941, 0.0352941, 1)
 
-[node name="Rooms" type="Node2D" parent="."]
+[node name="rooms" type="Node2D" parent="."]
 position = Vector2(32, 32)
 
 [node name="player" type="AnimatedSprite2D" parent="."]
@@ -65,7 +64,6 @@ position = Vector2(576, 322)
 
 [node name="statistics" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
-script = ExtResource("3_fbu1a")
 
 [node name="ColorRect2" type="ColorRect" parent="statistics"]
 offset_left = 1528.0
@@ -109,7 +107,7 @@ text = "0
 0
 0"
 
-[node name="Label2" type="Label" parent="statistics"]
+[node name="message" type="Label" parent="statistics"]
 offset_left = 1492.0
 offset_top = 898.0
 offset_right = 2350.0
@@ -127,4 +125,9 @@ offset_bottom = 1164.0
 theme_override_font_sizes/font_size = 90
 text = "99"
 horizontal_alignment = 1
-script = ExtResource("3_arafj")
+
+[node name="Bone" type="Sprite2D" parent="statistics/enemy_count"]
+modulate = Color(0.829501, 0.399388, 0.379627, 1)
+position = Vector2(124, 82)
+scale = Vector2(18.9375, 17.0938)
+texture = ExtResource("3_mvltj")

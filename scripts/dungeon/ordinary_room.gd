@@ -1,16 +1,17 @@
 extends Node2D
-@export var objects_count = 10
+@export var objects_count: int = 10
 @onready var player_scene = $"../../Player"
 
-const enemy_scene = "res://scenes/persons/Enemy.tscn"
+const enemy_scene = "res://scenes/persons/enemy.tscn"
 const vase_scene = "res://scenes/rooms/obj/vase.tscn"
+const chest_scene = "res://scenes/rooms/obj/chest.tscn"
 
 var room_address: Vector2i
 var pos = Vector2i(0, 0)
 var is_show: bool = true
 
-const width = 1056
-const height = 800
+const width: int = 1056
+const height: int = 800
 const border = Vector2(320, 64)
 
 
@@ -51,6 +52,18 @@ func create_enemys():
 				count += 1
 			obj.set_pos(rand_coord)
 			$objects.add_child(obj)
+		if len(coords) > 30: break
+	Signals.emit_signal("statistic", 5, count)
+	# создание сундука в комнате
+	if randi_range(0, 20) < 7 and objects_count > 0:
+		while true:
+			var rand_coord = Vector2i(randi_range(2, 23), randi_range(2, 13))
+			if rand_coord not in coords and wall_scene.get_cell_source_id(rand_coord) \
+			   and obstacles_scene.get_cell_source_id(rand_coord) == -1:
+				var obj = load(chest_scene).instantiate()
+				obj.set_pos(Vector2i(rand_coord.x * 32, rand_coord.y * 32))
+				$objects.add_child(obj)
+				break
 
 
 func show_room():

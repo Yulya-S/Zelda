@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://vkemfn0mkuhs"]
 
-[ext_resource type="Script" path="res://scripts/doors.gd" id="1_4yvp4"]
+[ext_resource type="Script" path="res://scripts/dungeon/doors.gd" id="1_4yvp4"]
 [ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="2_gsogb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htq40"]

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animation = $AnimatedSprite2D
 @onready var attack_scene = $attack_zone/AnimatedSprite2D
 
-enum states {STOP, AGGRESSION, ATTACK, DEATH}
+enum states { STOP, AGGRESSION, ATTACK, DEATH }
 enum colors { black, red }
 var state: states = states.STOP
 var color: colors
@@ -49,6 +49,7 @@ func _change_state(new_state: states):
 			animation.play("Dead_" + str(colors.keys()[color]))
 			collision_layer = 0
 			collision_mask = 0
+			Signals.emit_signal("statistic", 6)
 
 
 # изменение координат врага при его создании

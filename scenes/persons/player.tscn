@@ -1,6 +1,6 @@
 [gd_scene load_steps=55 format=3 uid="uid://cex8fxk6ikeo0"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ai3ur"]
+[ext_resource type="Script" path="res://scripts/dungeon/player.gd" id="1_ai3ur"]
 [ext_resource type="Texture2D" uid="uid://c2frjrn4nyslq" path="res://img/$ limp.png" id="2_xyq8k"]
 [ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="4_8dqms"]
 
@@ -504,4 +504,5 @@ position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_af1ty")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="attack_zone/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="attack_zone/AnimatedSprite2D" to="." method="_attack_animation_finished"]

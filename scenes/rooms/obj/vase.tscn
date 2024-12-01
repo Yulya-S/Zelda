@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://qqbwv42xluvd"]
 
-[ext_resource type="Script" path="res://scripts/vase.gd" id="1_4bd3e"]
+[ext_resource type="Script" path="res://scripts/dungeon/vase.gd" id="1_4bd3e"]
 [ext_resource type="Texture2D" uid="uid://cuv5tqj5u0as5" path="res://img/VasesAssetPackTransparent.png" id="1_k1obi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uj8s7"]

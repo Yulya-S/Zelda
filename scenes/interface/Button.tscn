@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://ddjxjm5n85061"]
 
-[ext_resource type="Script" path="res://scripts/button.gd" id="1_tq6t3"]
+[ext_resource type="Script" path="res://scripts/interface/button.gd" id="1_tq6t3"]
 [ext_resource type="Texture2D" uid="uid://2jj3vaj52uts" path="res://img/Chests.png" id="2_h2whj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knaga"]

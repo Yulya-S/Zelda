@@ -1,11 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4vxo4kox7rxk"]
+[gd_scene load_steps=2 format=3 uid="uid://4vxo4kox7rxk"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_mcbd1"]
 [ext_resource type="PackedScene" uid="uid://ducjvo0udede" path="res://scenes/interface/menu.tscn" id="2_xqdhu"]
 
 [node name="Main" type="Node2D"]
 process_mode = 3
-script = ExtResource("1_mcbd1")
 
 [node name="menu" parent="." instance=ExtResource("2_xqdhu")]
-modulate = Color(0, 0, 0, 1)

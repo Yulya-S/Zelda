@@ -1,16 +1,16 @@
 [gd_scene load_steps=11 format=4 uid="uid://dls4bhnxpmex8"]
 
-[ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="1_0k3mf"]
-[ext_resource type="Script" path="res://scenes/map/map_room.gd" id="1_yd470"]
-[ext_resource type="Texture2D" uid="uid://dlf80j6wo3mj8" path="res://img/chest_icon.tres" id="3_bhjuf"]
-[ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="4_go1yh"]
-[ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="5_nu0ji"]
-[ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="6_c55eo"]
-[ext_resource type="Texture2D" uid="uid://vjg60q8xfne3" path="res://img/bone.tres" id="7_hfr3l"]
-[ext_resource type="Texture2D" uid="uid://emejmg3htqd8" path="res://img/bubble_5.png" id="8_vbtnl"]
+[ext_resource type="Script" path="res://scripts/interface/map_room.gd" id="1_dmk3n"]
+[ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="2_3su6u"]
+[ext_resource type="Texture2D" uid="uid://dlf80j6wo3mj8" path="res://img/chest_icon.tres" id="3_4m44b"]
+[ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="4_sydhu"]
+[ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="5_k0pva"]
+[ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="6_spyw6"]
+[ext_resource type="Texture2D" uid="uid://vjg60q8xfne3" path="res://img/bone.tres" id="7_tv03r"]
+[ext_resource type="Texture2D" uid="uid://emejmg3htqd8" path="res://img/bubble_5.png" id="8_o7wr1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bhyf5"]
-texture = ExtResource("1_0k3mf")
+texture = ExtResource("2_3su6u")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
@@ -2272,8 +2272,8 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_bhyf5")
 
-[node name="Room" type="Node2D"]
-script = ExtResource("1_yd470")
+[node name="room" type="Node2D"]
+script = ExtResource("1_dmk3n")
 
 [node name="Floor" type="TileMapLayer" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -2283,27 +2283,27 @@ tile_set = SubResource("TileSet_lgrfs")
 [node name="ChestIcon" type="Sprite2D" parent="."]
 position = Vector2(52, 21)
 scale = Vector2(0.578125, 0.578125)
-texture = ExtResource("3_bhjuf")
+texture = ExtResource("3_4m44b")
 
 [node name="Arrows" type="Sprite2D" parent="."]
 position = Vector2(25, 38)
 scale = Vector2(0.875, 0.875)
-texture = ExtResource("4_go1yh")
+texture = ExtResource("4_sydhu")
 
 [node name="Coins" type="Sprite2D" parent="."]
 position = Vector2(39, 38)
 scale = Vector2(1.125, 1.125)
-texture = ExtResource("5_nu0ji")
+texture = ExtResource("5_k0pva")
 
 [node name="HealthPotion" type="Sprite2D" parent="."]
 position = Vector2(54, 38)
-texture = ExtResource("6_c55eo")
+texture = ExtResource("6_spyw6")
 
 [node name="Bone" type="Sprite2D" parent="."]
 position = Vector2(30, 25)
-texture = ExtResource("7_hfr3l")
+texture = ExtResource("7_tv03r")
 
 [node name="Bubble5" type="Sprite2D" parent="."]
 position = Vector2(39, 32)
 scale = Vector2(1.73828, 1.73828)
-texture = ExtResource("8_vbtnl")
+texture = ExtResource("8_o7wr1")

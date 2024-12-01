@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b35gv3r4v2qn8"]
 
-[ext_resource type="Script" path="res://scenes/interface/game.gd" id="1_47o4v"]
-[ext_resource type="Script" path="res://scenes/interface/Rooms.gd" id="2_1sbx0"]
+[ext_resource type="Script" path="res://scripts/interface/game.gd" id="1_47o4v"]
+[ext_resource type="Script" path="res://scripts/dungeon/rooms.gd" id="2_1sbx0"]
 [ext_resource type="PackedScene" uid="uid://bv2blouee7k1l" path="res://scenes/interface/pause.tscn" id="2_nsld0"]
 [ext_resource type="PackedScene" uid="uid://bvxwj2am5482f" path="res://scenes/interface/loading_game.tscn" id="3_64oxe"]
 [ext_resource type="PackedScene" uid="uid://cex8fxk6ikeo0" path="res://scenes/persons/player.tscn" id="3_lt38s"]
@@ -11,6 +11,45 @@
 [ext_resource type="Texture2D" uid="uid://b354untio3byd" path="res://img/healthPotion.tres" id="9_7127x"]
 [ext_resource type="Texture2D" uid="uid://bsvweqbm63cqu" path="res://img/coins.tres" id="10_ea0a5"]
 [ext_resource type="Texture2D" uid="uid://dq8em0p5y4bos" path="res://img/arrows.tres" id="11_abgms"]
+
+[sub_resource type="Animation" id="Animation_744rq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer/death_text:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasLayer/map:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_joiut"]
 resource_name = "death"
@@ -50,45 +89,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_744rq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/death_text:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../CanvasLayer/map:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ae7ro"]

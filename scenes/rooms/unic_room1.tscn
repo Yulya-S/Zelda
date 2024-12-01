@@ -1,10 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://diihql20s4abo"]
+[gd_scene load_steps=27 format=4 uid="uid://diihql20s4abo"]
 
-[ext_resource type="Script" path="res://scripts/ordinary_room.gd" id="1_2ijll"]
+[ext_resource type="Script" path="res://scripts/dungeon/ordinary_room.gd" id="1_2ijll"]
 [ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="2_mxvb6"]
 [ext_resource type="PackedScene" uid="uid://vkemfn0mkuhs" path="res://scenes/rooms/doors.tscn" id="3_pxldd"]
-[ext_resource type="Script" path="res://scripts/things.gd" id="5_3d714"]
-[ext_resource type="Script" path="res://scripts/salesman.gd" id="5_8olxs"]
+[ext_resource type="Script" path="res://scripts/dungeon/salesman.gd" id="5_8olxs"]
 [ext_resource type="Texture2D" uid="uid://d4ck1erluede7" path="res://img/Jotem spritesheet.png" id="6_whl74"]
 [ext_resource type="PackedScene" uid="uid://di52hw204qav5" path="res://scenes/rooms/obj/product.tscn" id="8_aib1w"]
 
@@ -6797,48 +6796,6 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_163hv")
 
-[sub_resource type="GDScript" id="GDScript_4y3ms"]
-script/source = "extends Node2D
-const enemy_scene = \"res://scenes/persons/Enemy.tscn\"
-const vase_scene = \"res://scenes/rooms/obj/vase.tscn\"
-@export var poses = []
-
-
-func _ready() -> void:
-	pass
-
-
-func create(enemy_count: int = 0):
-	var room = $\"..\"
-	var obs = $\"../Obstacles\"
-	var wall = $\"../Wall\"
-	var en = load(enemy_scene)
-	var vase = load(vase_scene)
-	var coords = []
-	
-	var count = 0
-	while len(coords) != enemy_count:
-		var coord = Vector2i(randi_range(2, 23), randi_range(2, 13))
-		if obs.get_cell_source_id(coord) == -1 && wall.get_cell_source_id(coord):
-			if coord not in coords:
-				coords.append(coord)
-				coord = Vector2i(coord.x * 32, coord.y * 32)
-				var rnd = randi_range(0, 15)
-				if rnd > 7:
-					var enemy = en.instantiate()
-					enemy.set_pos(coord)
-					add_child(enemy)
-					count += 1
-				else:
-					var v = vase.instantiate()
-					v.set_pos(coord)
-					add_child(v)
-
-
-func _process(delta: float) -> void:
-	pass
-"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrt2n"]
 atlas = ExtResource("6_whl74")
 region = Rect2(0, 0, 128, 128)
@@ -6958,34 +6915,35 @@ tile_set = SubResource("TileSet_snvac")
 [node name="Doors" parent="." instance=ExtResource("3_pxldd")]
 
 [node name="objects" type="Node2D" parent="."]
-script = SubResource("GDScript_4y3ms")
 
-[node name="Things" type="Node2D" parent="."]
-script = ExtResource("5_3d714")
+[node name="things" type="Node2D" parent="."]
 
-[node name="Salesman" type="StaticBody2D" parent="."]
+[node name="salesman" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("5_8olxs")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Salesman"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="salesman"]
 position = Vector2(433, 113)
 scale = Vector2(1.95312, 1.95312)
 sprite_frames = SubResource("SpriteFrames_v3kgw")
 animation = &"stand2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Salesman"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="salesman"]
 position = Vector2(431, 205)
 shape = SubResource("CapsuleShape2D_inus3")
 
-[node name="Product3" parent="." instance=ExtResource("8_aib1w")]
-position = Vector2(514, 325)
+[node name="goods" type="Node2D" parent="."]
+position = Vector2(-1, 1)
 
-[node name="Product4" parent="." instance=ExtResource("8_aib1w")]
-position = Vector2(625, 205)
+[node name="Product3" parent="goods" instance=ExtResource("8_aib1w")]
+position = Vector2(518, 343)
 
-[node name="Product2" parent="." instance=ExtResource("8_aib1w")]
-position = Vector2(349, 325)
+[node name="Product4" parent="goods" instance=ExtResource("8_aib1w")]
+position = Vector2(639, 207)
 
-[node name="Product" parent="." instance=ExtResource("8_aib1w")]
-position = Vector2(243, 205)
+[node name="Product2" parent="goods" instance=ExtResource("8_aib1w")]
+position = Vector2(353, 343)
+
+[node name="Product" parent="goods" instance=ExtResource("8_aib1w")]
+position = Vector2(237, 207)

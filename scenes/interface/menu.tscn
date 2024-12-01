@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://ducjvo0udede"]
 
 [ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="1_3nfq6"]
-[ext_resource type="Script" path="res://scripts/menu.gd" id="2_hfk46"]
+[ext_resource type="Script" path="res://scripts/interface/menu.gd" id="2_hfk46"]
 [ext_resource type="PackedScene" uid="uid://ddjxjm5n85061" path="res://scenes/interface/Button.tscn" id="3_w0eli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdp0u"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bg57qu3vmq5t1"]
+[gd_scene load_steps=19 format=3 uid="uid://bg57qu3vmq5t1"]
 
-[ext_resource type="Script" path="res://scripts/chest.gd" id="1_rd2c4"]
+[ext_resource type="Script" path="res://scripts/dungeon/chest.gd" id="1_rd2c4"]
 [ext_resource type="Texture2D" uid="uid://2jj3vaj52uts" path="res://img/Chests.png" id="2_k2aik"]
 [ext_resource type="Texture2D" uid="uid://dlf80j6wo3mj8" path="res://img/chest_icon.tres" id="2_l57ej"]
 
@@ -78,10 +78,85 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ynqnv")
 }],
-"loop": true,
+"loop": false,
 "name": &"open",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_44f4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chestAnimation:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("chestAnimation:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sg5hj"]
+resource_name = "close"
+length = 2.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("chestAnimation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"open"],
+"method": &"play_backwards"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("chestAnimation:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 1.96667, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.349066, -1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("chestAnimation:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.96667, 2.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fh0im"]
+_data = {
+"RESET": SubResource("Animation_44f4j"),
+"close": SubResource("Animation_sg5hj")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eas3p"]
 size = Vector2(53.6641, 16)
@@ -102,6 +177,11 @@ scale = Vector2(1.625, 1.625)
 sprite_frames = SubResource("SpriteFrames_fo1as")
 animation = &"normal"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fh0im")
+}
+
 [node name="ChestCollision" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 10.658)
 shape = SubResource("RectangleShape2D_eas3p")
@@ -115,5 +195,5 @@ collision_mask = 4
 position = Vector2(6.10352e-05, 7)
 shape = SubResource("CircleShape2D_tnpow")
 
-[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
-[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
+[connection signal="animation_finished" from="chestAnimation" to="." method="_on_chest_animation_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -4,15 +4,16 @@ extends CharacterBody2D
 @onready var fires = $Fires
 @onready var attack_zone = $attack_zone
 var arrow_scene = load("res://scenes/persons/arrow.tscn")
+var interact_object
 
 var room_address: Vector2i = Vector2i(0, 0)  
 var coins: int = 0
 var potions: int = 0
 var arrows: int = 0
 var HP: int = 0
-var SPEED = 250.0
+var SPEED: float = 250.0
 
-enum states { STOP, WALK, RUN, ATTACK, TAKE_DAMAGE, INTERACT }
+enum states { STOP, WALK, RUN, ATTACK }
 enum rotates { left, right, up, down }
 var state: states = states.STOP
 var rotate: rotates = rotates.down
@@ -29,7 +30,6 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if state != states.ATTACK:
 		if event.is_action_pressed("attack"): _change_state(states.ATTACK) # Обработка ближней аттаки
-		elif event.is_action_pressed("interact"): _change_state(states.INTERACT) # Обработка взаимодействия
 		elif event.is_action_pressed("hill") and potions > 0 \
 			 and HP < interface_scene.get_child(0).max_value: # обработка лечения
 			potions -= 1
@@ -46,6 +46,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if interact_object and not interact_object.overlaps_player():
+		interface_scene.get_child(-4).set_text("")
+		interact_object = null
+	
 	if HP <= 0:
 		get_tree().paused = true
 		$"../AnimationPlayer".play("death")
@@ -86,20 +90,6 @@ func take_damage():
 		$AnimationPlayer.play("damage")
 		HP -= 1
 		interface_scene.get_child(0).value = HP
-		
-
-func add_thing(type: int):
-	match type:
-		0:
-			arrows += 1
-			Signals.emit_signal("new_message", "Вы подобрали стрелу")
-		1:
-			coins += 1
-			Signals.emit_signal("new_message", "Вы подобрали монету")
-		2:
-			potions += 1
-			Signals.emit_signal("new_message", "Вы подобрали зелье лечения")
-	set_obj_count()
 
 
 # изменение текста счетчиков предметов
@@ -107,6 +97,11 @@ func set_obj_count():
 	interface_scene.get_child(-1).set_text(str(arrows))
 	interface_scene.get_child(-2).set_text(str(coins))
 	interface_scene.get_child(-3).set_text(str(potions))
+	
+
+func set_interact_text(text: String, body):
+	interface_scene.get_child(-4).set_text("Нажмите Е, " + text)
+	interact_object = body
 
 
 # Изменение состояний игрока
@@ -139,12 +134,13 @@ func _change_rotate(new_rotate):
 func _teleport(coord: Vector2i, address: Vector2i):
 	position = coord
 	room_address = address
-
-
-# обработка окончания удара
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if str(attack_zone.get_child(0).animation) == "default": state = states.STOP
 		
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "damage": get_up = false
+
+
+# обработка окончания удара
+func _attack_animation_finished() -> void:
+	if str(attack_zone.get_child(0).animation) == "default":
+		state = states.STOP

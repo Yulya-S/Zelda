@@ -9,14 +9,6 @@ var xs = []
 var ys = []
 
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta: float) -> void:
-	pass
-
-
 # Добавление шаблонов комнат
 func load_rooms():
 	var i = max(len(room_array), len(unic_room_array)) + 1
@@ -43,8 +35,8 @@ func generate_room():
 			2: coord.y += 1
 			3: coord.y -= 0
 		# проверяем что бы комнат по x и y было не больше 7
-		if (len(xs) > 0 and xs.max() - xs.min() == 6 and coord.x in xs) \
-			or (len(ys) > 0 and ys.max() - ys.min() == 6 and coord.y in ys):
+		if (len(xs) > 0 and len(xs) > 6 and coord.x in xs) \
+			or (len(ys) > 0 and len(ys) > 6 and coord.y in ys):
 			coord = room_coords[randi_range(0, len(room_coords) - 1)]
 		attempts += 1
 		if attempts > 10:
@@ -64,8 +56,8 @@ func generate_room():
 	room.set_pos(coord.x, coord.y)
 	room.hide_room()
 	add_child(room)
-	xs.append(coord.x)
-	ys.append(coord.y)
+	if coord.x not in xs: xs.append(coord.x)
+	if coord.y not in ys: ys.append(coord.y)
 	room_coords.append(coord)
 	
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://dqwuo5cdc6kip"]
 
-[ext_resource type="Script" path="res://scripts/arrow.gd" id="1_ffv1n"]
+[ext_resource type="Script" path="res://scripts/interface/arrow.gd" id="1_ffv1n"]
 [ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="2_pwrq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l83s"]

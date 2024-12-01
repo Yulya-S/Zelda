@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bvxwj2am5482f"]
 
-[ext_resource type="Script" path="res://scenes/interface/loading_game.gd" id="1_ox0hm"]
+[ext_resource type="Script" path="res://scripts/interface/loading_game.gd" id="1_ox0hm"]
 [ext_resource type="Texture2D" uid="uid://emejmg3htqd8" path="res://img/bubble_5.png" id="2_chwjg"]
 
 [sub_resource type="Animation" id="Animation_pulqu"]
