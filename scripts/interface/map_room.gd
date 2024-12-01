@@ -4,6 +4,7 @@ var update: bool = false
 
 
 func _process(delta: float) -> void:
+	if room == null: return
 	if $"../../".current_pos == room.room_address and not update:
 		update = true
 		for i in range(1, len(get_children())): get_child(i).hide()

@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://dkdypl01q1awy"]
+
+[ext_resource type="Script" path="res://scripts/dungeon/bosses/fire_3.gd" id="1_sdvmd"]
+[ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="2_8y8re"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri56p"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmi8s"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4p32"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fur5v"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8c74o"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwyjg"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxmik"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l1v6"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5ot4"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(512, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpdrx"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(576, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi6ee"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(640, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4s11"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(704, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8fo7"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(768, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5u7u"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(832, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blp03"]
+atlas = ExtResource("2_8y8re")
+region = Rect2(896, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhatr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri56p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmi8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4p32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fur5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8c74o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwyjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxmik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l1v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5ot4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpdrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi6ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4s11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8fo7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5u7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blp03")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_113vf"]
+size = Vector2(40, 14)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_sdvmd")
+
+[node name="lifeTime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="spawn" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_uhatr")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_113vf")
+
+[connection signal="timeout" from="lifeTime" to="." method="_on_life_time_timeout"]
+[connection signal="timeout" from="spawn" to="." method="_on_spawn_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

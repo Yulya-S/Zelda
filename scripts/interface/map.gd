@@ -55,6 +55,7 @@ func _change(idx: int, count: int = 1):
 			death_enemys += 1
 			var text = str(all_enemys - death_enemys)
 			if all_enemys - death_enemys == 0:
+				Signals.emit_signal("new_message", "Комната босса была открыта, нажмите M")
 				$statistics/message.set_text("Комната босса открыта\nНажмите E, для перехода")
 				$statistics/enemy_count.set_text("")
 				$statistics/enemy_count/Bone.show()
