@@ -46,7 +46,6 @@ func  _input(event: InputEvent) -> void:
 			map_scene.hide()
 			_change_state(states.PLAING)
 			
-			
 
 # изменение состояния игры
 func _change_state(new_state: states):

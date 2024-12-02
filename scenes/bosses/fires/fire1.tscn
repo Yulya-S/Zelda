@@ -149,8 +149,6 @@ wait_time = 5.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_crih1")
-frame = 9
-frame_progress = 0.863551
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
