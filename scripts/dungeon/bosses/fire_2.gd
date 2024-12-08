@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_spawn_timeout() -> void:
 	animation.play()
+	$AudioStreamPlayer.play()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

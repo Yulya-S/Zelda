@@ -35,16 +35,18 @@ func  _input(event: InputEvent) -> void:
 			map_scene.hide()
 			_change_state(states.PLAING)
 	elif event.is_action_pressed("interact") and state == states.MAP:
-		if $CanvasLayer/map.all_enemys - $CanvasLayer/map.death_enemys == 0:
-			get_tree().paused = true
-			for i in $Rooms.get_children():
-				$Rooms.remove_child(i)
-				i.queue_free()
-			$Rooms.add_child(load(bosses_room).instantiate())
-			$Rooms.get_child(-1).set_pos(0, 0)
-			$Player.position = Vector2(432, 272)
-			map_scene.hide()
-			_change_state(states.PLAING)
+		#if $CanvasLayer/map.all_enemys - $CanvasLayer/map.death_enemys == 0:
+			if $Rooms.get_child(0).scene_file_path.split("/")[-1] != "boss_room.tscn":
+				$AudioStreamPlayer.stop()
+				get_tree().paused = true
+				for i in $Rooms.get_children():
+					$Rooms.remove_child(i)
+					i.queue_free()
+				$Rooms.add_child(load(bosses_room).instantiate())
+				$Rooms.get_child(-1).set_pos(0, 0)
+				$Player.position = Vector2(432, 272)
+				map_scene.hide()
+				_change_state(states.PLAING)
 			
 
 # изменение состояния игры
@@ -67,3 +69,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		$"..".add_child(load("res://scenes/interface/menu.tscn").instantiate())
 		$"..".remove_child(self)
 		self.queue_free()
+		
+	elif anim_name == "end_load":
+		$CanvasLayer/LoadingGame.escape()

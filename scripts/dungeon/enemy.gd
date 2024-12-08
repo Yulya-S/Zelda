@@ -45,6 +45,7 @@ func _change_state(new_state: states):
 		states.ATTACK:
 			animation.play("Attack_" + str(colors.keys()[color]))
 			attack_scene.play("default")
+			$atack_Sound.play()
 		states.DEATH:
 			animation.play("Dead_" + str(colors.keys()[color]))
 			collision_layer = 0

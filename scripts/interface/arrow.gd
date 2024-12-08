@@ -8,6 +8,7 @@ const SPEED: int = 5
 func _ready() -> void:
 	$lifeTime.start()
 	$AnimatedSprite2D.play()
+	$fire_Sound.play()
 	
 	
 func _process(delta: float) -> void:

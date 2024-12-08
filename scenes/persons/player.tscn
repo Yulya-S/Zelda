@@ -1,8 +1,12 @@
-[gd_scene load_steps=55 format=3 uid="uid://cex8fxk6ikeo0"]
+[gd_scene load_steps=59 format=3 uid="uid://cex8fxk6ikeo0"]
 
 [ext_resource type="Script" path="res://scripts/dungeon/player.gd" id="1_ai3ur"]
+[ext_resource type="AudioStream" uid="uid://djaw43wugd1n4" path="res://music/sounds/walk_knight.wav" id="2_aupdr"]
 [ext_resource type="Texture2D" uid="uid://c2frjrn4nyslq" path="res://img/$ limp.png" id="2_xyq8k"]
+[ext_resource type="AudioStream" uid="uid://tvj2m77ka2fm" path="res://music/sounds/coin.wav" id="3_7gskd"]
+[ext_resource type="AudioStream" uid="uid://ci6uplodhg6wk" path="res://music/sounds/hurt_knight.wav" id="3_tx4jo"]
 [ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="4_8dqms"]
+[ext_resource type="AudioStream" uid="uid://bxnf10d43au82" path="res://music/sounds/EM_FIRE_CAST_01.wav" id="5_okee0"]
 
 [sub_resource type="Animation" id="Animation_b1mf1"]
 length = 0.001
@@ -454,6 +458,21 @@ collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_ai3ur")
 
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="walk_Sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("2_aupdr")
+volume_db = 10.0
+pitch_scale = 0.7
+
+[node name="get_thing_Sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("3_7gskd")
+
+[node name="hit_Sound" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("3_tx4jo")
+volume_db = 10.0
+pitch_scale = 1.3
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -488,6 +507,10 @@ sprite_frames = SubResource("SpriteFrames_b6yks")
 frame = 14
 frame_progress = 1.0
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="attack_zone"]
+stream = ExtResource("5_okee0")
+volume_db = -20.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_zone"]
 position = Vector2(-44, 2)
 scale = Vector2(1.26563, 1.26563)
@@ -503,6 +526,8 @@ collision_mask = 4
 position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_af1ty")
 
+[connection signal="finished" from="sounds/walk_Sound" to="." method="_on_audio_stream_player_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="animation_finished" from="attack_zone/AnimatedSprite2D" to="." method="_attack_animation_finished"]

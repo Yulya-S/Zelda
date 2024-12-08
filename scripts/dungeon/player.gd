@@ -37,6 +37,8 @@ func _input(event: InputEvent) -> void:
 			interface_scene.get_child(0).value = HP
 			set_obj_count()
 			Signals.emit_signal("statistic", 0)
+			$sounds/get_thing_Sound.stream = load("res://music/sounds/gem.wav")
+			$sounds/get_thing_Sound.play()
 		elif event.is_action_pressed("fire") and arrows > 0: # обработка дальней аттаки
 			arrows -= 1
 			fires.add_child(arrow_scene.instantiate())
@@ -51,6 +53,8 @@ func _physics_process(delta: float) -> void:
 		interact_object = null
 	
 	if HP <= 0:
+		#$sounds/hit_Sound.stream = load("res://music/sounds/die_knight.wav")
+		$sounds/hit_Sound.play()
 		get_tree().paused = true
 		$"../AnimationPlayer".play("death")
 		
@@ -87,6 +91,7 @@ func _physics_process(delta: float) -> void:
 func take_damage():
 	if not get_up:
 		get_up = true
+		$sounds/hit_Sound.play()
 		$AnimationPlayer.play("damage")
 		HP -= 1
 		interface_scene.get_child(0).value = HP
@@ -97,6 +102,9 @@ func set_obj_count():
 	interface_scene.get_child(-1).set_text(str(arrows))
 	interface_scene.get_child(-2).set_text(str(coins))
 	interface_scene.get_child(-3).set_text(str(potions))
+	if arrows > 0 or coins > 0 or potions > 0:
+		$sounds/get_thing_Sound.stream = load("res://music/sounds/coin.wav")
+		$sounds/get_thing_Sound.play()
 	
 
 func set_interact_text(text: String, body):
@@ -110,10 +118,18 @@ func _change_state(new_state: states):
 		return
 	state = new_state
 	match state:
-		states.STOP: animation.play("stop_" + str(rotates.keys()[int(rotate)]))
-		states.RUN: SPEED = 400.0
-		states.WALK: SPEED = 250.0
+		states.STOP:
+			$sounds/walk_Sound.stop()
+			animation.play("stop_" + str(rotates.keys()[int(rotate)]))
+		states.RUN:
+			$sounds/walk_Sound.play()
+			SPEED = 400.0
+		states.WALK:
+			$sounds/walk_Sound.play()
+			SPEED = 250.0
 		states.ATTACK:
+			$sounds/walk_Sound.stop()
+			$attack_zone/AudioStreamPlayer.play()
 			attack_zone.get_child(0).play("default")
 			animation.play("attack_" + str(rotates.keys()[int(rotate)]))
 
@@ -144,3 +160,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _attack_animation_finished() -> void:
 	if str(attack_zone.get_child(0).animation) == "default":
 		state = states.STOP
+
+func _on_audio_stream_player_finished() -> void:
+	$sounds/walk_Sound.play()

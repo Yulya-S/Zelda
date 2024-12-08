@@ -37,13 +37,15 @@ func _change_state(new_state: states):
 			$sprites/AnimatedSprite2D.play("attack1")
 		states.ATTACK2:
 			attack2_scene.play("default")
+			$attack_zone/AudioStreamPlayer.play()
 			$sprites/AnimatedSprite2D2.play("attack2")
 		states.ATTACK3:
 			for i in range(randi_range(2, 7)):
 				$fires.add_child(load(fire2_scene).instantiate())
 			$sprites/AnimatedSprite2D3.play("attack3")
-		states.DEATH: $"../../Node2D/AnimationPlayer".play("end")
-
+		states.DEATH:
+			$"../../Node2D/AnimationPlayer".play("end")
+			
 
 # проверка пытается ли игрок совершить удар и попадет ли по боссу
 func overlaps_player_attack():

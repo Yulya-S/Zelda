@@ -32,11 +32,12 @@ func _process(delta: float) -> void:
 			idx += 1
 		stages.START:
 			rooms_scene.get_child(0).show_room()
+			$"../../AudioStreamPlayer".play()
+			$"../../Player/Camera2D".make_current()
 			$"../Pause".hide()
 			$"../map".hide()
 			get_tree().paused = false
-			$"..".remove_child(self)
-			self.queue_free()
+			$"../../AnimationPlayer".play("end_load")
 
 	
 # переход на следующую стадию загрузки
@@ -47,6 +48,11 @@ func set_next_stage():
 		stages.DUNGEON: text_scene.text = "создаем структуру подземелья"
 		stages.ADD_DOORS: text_scene.text = "добавляем переходы между комнатами"
 		stages.START: text_scene.text = "запускаем игру"
+
+
+func escape():
+	$"..".remove_child(self)
+	self.queue_free()
 
 
 # запуск повторения анимации после её окончания

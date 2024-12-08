@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://ducjvo0udede"]
+[gd_scene load_steps=11 format=4 uid="uid://ducjvo0udede"]
 
 [ext_resource type="Texture2D" uid="uid://3j4b3e82gma8" path="res://img/MainLev2.0.png" id="1_3nfq6"]
 [ext_resource type="Script" path="res://scripts/interface/menu.gd" id="2_hfk46"]
 [ext_resource type="PackedScene" uid="uid://ddjxjm5n85061" path="res://scenes/interface/Button.tscn" id="3_w0eli"]
+[ext_resource type="AudioStream" uid="uid://dgo6or24xt42u" path="res://music/08 - DavidKBD - Belmont Chronicles Pack - The Dungeons.ogg" id="4_5wejy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdp0u"]
 texture = ExtResource("1_3nfq6")
@@ -2305,6 +2306,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.56917, 1),
+"update": 0,
+"values": [-10.0, -80.0]
+}
 
 [sub_resource type="Animation" id="Animation_4vylx"]
 length = 0.001
@@ -2368,6 +2381,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(144, 104)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
 
 [sub_resource type="Animation" id="Animation_41uw6"]
 resource_name = "appearance"
@@ -2418,6 +2443,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(4.43828, 1),
 "update": 0,
 "values": [0, 10]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.0333333, 1),
+"transitions": PackedFloat32Array(0.659754, 1),
+"update": 0,
+"values": [-80.0, -10.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vxfsb"]
@@ -2476,5 +2513,11 @@ position = Vector2(576, 320)
 libraries = {
 "": SubResource("AnimationLibrary_vxfsb")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5wejy")
+volume_db = -80.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

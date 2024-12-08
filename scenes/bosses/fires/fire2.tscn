@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://prd8ytmy0lmq"]
+[gd_scene load_steps=21 format=3 uid="uid://prd8ytmy0lmq"]
 
 [ext_resource type="Script" path="res://scripts/dungeon/bosses/fire_2.gd" id="1_sax6g"]
 [ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="2_p3pfi"]
+[ext_resource type="AudioStream" uid="uid://dnw0dq3c6ndf" path="res://music/sounds/EM_FIRE_IMPACT_01.wav" id="2_yppyf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msdw6"]
 atlas = ExtResource("2_p3pfi")
@@ -121,6 +122,10 @@ radius = 56.5685
 
 [node name="Fire2" type="Node2D"]
 script = ExtResource("1_sax6g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yppyf")
+volume_db = -15.0
 
 [node name="spawn" type="Timer" parent="."]
 

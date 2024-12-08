@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqwuo5cdc6kip"]
+[gd_scene load_steps=24 format=3 uid="uid://dqwuo5cdc6kip"]
 
 [ext_resource type="Script" path="res://scripts/interface/arrow.gd" id="1_ffv1n"]
+[ext_resource type="AudioStream" uid="uid://cfycsuwt4h2ab" path="res://music/sounds/EM_FIRE_CAST_02.wav" id="2_i32vu"]
 [ext_resource type="Texture2D" uid="uid://b1xe1nutkgnk5" path="res://img/Retro Pixel Fire Effects Free.png" id="2_pwrq0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8l83s"]
@@ -142,6 +143,10 @@ size = Vector2(30, 6.75)
 
 [node name="fire" type="Node2D"]
 script = ExtResource("1_ffv1n")
+
+[node name="fire_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_i32vu")
+volume_db = -20.0
 
 [node name="lifeTime" type="Timer" parent="."]
 autostart = true

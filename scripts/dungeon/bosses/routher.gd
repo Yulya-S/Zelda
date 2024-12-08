@@ -33,8 +33,9 @@ func _change_state(new_state: states):
 			for i in range(6):
 				$fires.add_child(load(fire_scene).instantiate())
 				$fires.get_child(-1).set_stawn_time(0.5 * (i + 1))
-		states.DEATH: $"../../Node2D/AnimationPlayer".play("end")
-	
+		states.DEATH:
+			$"../../Node2D/AnimationPlayer".play("end")
+			
 
 # проверка пытается ли игрок совершить удар и попадет ли по боссу
 func overlaps_player_attack():

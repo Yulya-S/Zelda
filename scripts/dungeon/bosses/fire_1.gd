@@ -7,6 +7,7 @@ const SPEED: float = 200.0
 func _ready() -> void:
 	$lifeTime.start()
 	$AnimatedSprite2D.play()
+	$AudioStreamPlayer.play()
 	
 	
 func _process(delta: float) -> void:		

@@ -4,7 +4,12 @@ var bosses = ["res://scenes/bosses/boss1.tscn", "res://scenes/bosses/boss2.tscn"
 
 
 func _ready() -> void:
-	add_child(load(bosses[randi_range(0, 1)]).instantiate())
+	var boss_idx = randi_range(0, 1)
+	add_child(load(bosses[boss_idx]).instantiate())
+	match boss_idx:
+		0: $"../Node2D/AudioStreamPlayer".stream = load("res://music/02 - DavidKBD - Belmont Chronicles Pack - The Mystic Forest.ogg")
+		1: $"../Node2D/AudioStreamPlayer".stream = load("res://music/04 - DavidKBD - Belmont Chronicles Pack - Awakening After the War.ogg")
+	$"../Node2D/AudioStreamPlayer".play()
 	animation.play("start")
 
 

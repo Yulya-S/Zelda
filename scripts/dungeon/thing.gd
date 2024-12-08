@@ -36,6 +36,7 @@ func take():
 			player.coins += 1
 			Signals.emit_signal("new_message", "Вы подобрали монету")
 	player.set_obj_count()
+	$AudioStreamPlayer.play()
 	$"..".remove_child(self)
 	self.queue_free()
 

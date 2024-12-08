@@ -38,3 +38,4 @@ func _on_spawn_timeout() -> void:
 	$lifeTime.start()
 	$AnimatedSprite2D.show()
 	$AnimatedSprite2D.play()
+	$AudioStreamPlayer.play()
