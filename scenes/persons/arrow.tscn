@@ -146,7 +146,7 @@ script = ExtResource("1_ffv1n")
 
 [node name="fire_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_i32vu")
-volume_db = -20.0
+volume_db = -15.0
 
 [node name="lifeTime" type="Timer" parent="."]
 autostart = true

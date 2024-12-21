@@ -35,7 +35,7 @@ func  _input(event: InputEvent) -> void:
 			map_scene.hide()
 			_change_state(states.PLAING)
 	elif event.is_action_pressed("interact") and state == states.MAP:
-		#if $CanvasLayer/map.all_enemys - $CanvasLayer/map.death_enemys == 0:
+		if $CanvasLayer/map.all_enemys - $CanvasLayer/map.death_enemys == 0:
 			if $Rooms.get_child(0).scene_file_path.split("/")[-1] != "boss_room.tscn":
 				$AudioStreamPlayer.stop()
 				get_tree().paused = true
